@@ -1,0 +1,17 @@
+@import "tailwindcss";
+
+
+/* Cinematic Title Font & Monospaced Body Font */
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Share+Tech+Mono&display=swap');
+
+@layer base {
+  body {
+    @apply bg-[#101010] text-slate-300; /* Deep charcoal background */
+    font-family: 'Share Tech Mono', monospace; /* Default font for a "terminal" feel */
+  }
+
+  h1, h2, h3 {
+    font-family: 'Anton', sans-serif; /* Bold, impactful font for headings */
+    letter-spacing: 0.1em;
+  }
+}
