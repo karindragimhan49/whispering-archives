@@ -32,7 +32,7 @@ export default function LoginPage() {
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
         <img
-          src="https://images.unsplash.com/photo-1588869201722-154a4455583f?q=80&w=2070&auto=format&fit=crop"
+          src="https://github.com/karindragimhan49/whispering-archives/blob/main/client/public/images/login.png"
           alt="Secure Archive Background"
           className="w-full h-full object-cover opacity-20"
         />
