@@ -143,7 +143,7 @@ const CallToActionSection = () => (
                 className="w-full h-full bg-cover bg-center"
                 style={{ backgroundImage: `url(/images/image-1.png)` }} 
             ></div>
-            <div className="absolute inset-0 bg-black/50"></div>
+            <div className="absolute inset-0 bg-black/60"></div>
         </div>
 
         {/* Content */}
