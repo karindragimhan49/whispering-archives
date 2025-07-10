@@ -1,17 +1,19 @@
 @import "tailwindcss";
 
 
-/* Cinematic Title Font & Monospaced Body Font */
-@import url('https://fonts.googleapis.com/css2?family=Anton&family=Share+Tech+Mono&display=swap');
+/* Cinematic Title Font & Clean Body Font */
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;600;700&display=swap');
 
 @layer base {
-  body {
-    @apply bg-[#101010] text-slate-300; /* Deep charcoal background */
-    font-family: 'Share Tech Mono', monospace; /* Default font for a "terminal" feel */
+  html {
+    scroll-behavior: smooth;
   }
-
-  h1, h2, h3 {
-    font-family: 'Anton', sans-serif; /* Bold, impactful font for headings */
-    letter-spacing: 0.1em;
+  body {
+    @apply bg-black text-slate-200 antialiased;
+    font-family: 'Inter', sans-serif;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Bebas Neue', sans-serif;
+    letter-spacing: 0.05em;
   }
 }

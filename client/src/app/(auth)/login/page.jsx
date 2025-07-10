@@ -31,12 +31,14 @@ export default function LoginPage() {
     <div className="relative flex items-center justify-center min-h-screen overflow-hidden">
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
-        <img
-          src="https://github.com/karindragimhan49/whispering-archives/blob/main/client/public/images/login.png"
-          alt="Secure Archive Background"
-          className="w-full h-full object-cover opacity-20"
-        />
-        <div className="absolute inset-0 bg-black/60"></div>
+        <div className="absolute inset-0 z-0">
+  <img
+    src="/images/login.png"
+    alt="Secure Archive Background"
+    className="w-full h-full object-cover opacity-50"
+  />
+</div>
+        <div className="absolute inset-0 bg-black/40"></div>
       </div>
 
       {/* Main Content */}
