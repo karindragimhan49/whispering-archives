@@ -1,9 +1,10 @@
 "use client";
 
 import Link from 'next/link';
-import { motion } from 'framer-motion';
+import { motion, useAnimation } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
-
+import { useEffect } from "react";
+import { useInView } from "react-intersection-observer";
 // ====================================================================
 //  Main Page Component
 // ====================================================================
@@ -30,7 +31,7 @@ const Header = () => (
     <header className="absolute top-0 left-0 right-0 z-20">
         <nav className="container mx-auto px-6 py-6 flex justify-between items-center">
             <div className="text-xl font-bold tracking-widest text-white font-['Bebas_Neue',_sans-serif]">
-              <span className="text-red-600">//</span> WS
+              <span className="text-white-600">//</span> Whispering Archives
             </div>
             <Link
               href="/login"
@@ -77,61 +78,101 @@ const HeroSection = () => (
 );
 
 // This section has no background image
-const IntroductionSection = () => (
-  <section className="py-20 md:py-28 bg-black relative">
-    <div className="container mx-auto px-6 max-w-3xl relative z-10">
-      
-      <div className="relative">
-        {/* Background image for text only */}
-        <div
-          className="absolute inset-0 w-full h-full bg-cover bg-center rounded-lg filter grayscale brightness-50"
-          style={{ backgroundImage: `url(/images/image-1.png)` }}
-        ></div>
-        <div className="absolute inset-0 bg-black/40 rounded-lg"></div>
+const IntroductionSection = () => {
+  const controls = useAnimation();
+  const { ref, inView } = useInView({
+    triggerOnce: false, // trigger every time
+    threshold: 0.3, // 30% visible
+  });
 
-        {/* Text content */}
-        <div className="relative p-8 text-left">
-          <h2 className="text-4xl text-white font-['Bebas_Neue',_sans-serif]">
-            WHAT LURKS IN THE SHADOWS?
-          </h2>
-          <div className="w-16 h-0.5 bg-red-600 mt-4 mb-6"></div>
-          <p className="text-lg text-slate-200 leading-relaxed">
-            The world is not as it seems. Anomalies defy the laws of nature, hidden from public view. The Whispering Archives is the sole repository of information on these entities. Our mission is to document, contain, and protect.
-          </p>
+  useEffect(() => {
+    if (inView) {
+      controls.start({ opacity: 1, x: 0 });
+    } else {
+      controls.start({ opacity: 0, x: -50 });
+    }
+  }, [inView, controls]);
+
+  return (
+    <section className="py-20 md:py-28 bg-black relative">
+      <div className="container mx-auto px-6 max-w-3xl relative z-10">
+        <div className="relative">
+          {/* Background image for text only */}
+          <div
+            className="absolute inset-0 w-full h-full bg-cover bg-center rounded-lg filter grayscale brightness-50"
+            style={{ backgroundImage: `url(/images/image-1.png)` }}
+          ></div>
+          <div className="absolute inset-0 bg-black/40 rounded-lg"></div>
+
+          {/* Animated Text Content */}
+          <motion.div
+            ref={ref}
+            animate={controls}
+            initial={{ opacity: 0, x: -50 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            className="relative p-8 text-left"
+          >
+            <h2 className="text-4xl text-white font-['Bebas_Neue',_sans-serif]">
+              WHAT LURKS IN THE SHADOWS?
+            </h2>
+            <div className="w-16 h-0.5 bg-red-600 mt-4 mb-6"></div>
+            <p className="text-lg text-slate-200 leading-relaxed">
+              The world is not as it seems. Anomalies defy the laws of nature, hidden from public view. The Whispering Archives is the sole repository of information on these entities. Our mission is to document, contain, and protect.
+            </p>
+          </motion.div>
         </div>
       </div>
+    </section>
+  );
+};
 
-    </div>
-  </section>
-);
 
-const IntroductionSection1 = () => (
-  <section className="py-20 md:py-28 bg-black relative">
-    <div className="container mx-auto px-6 max-w-3xl text-center relative z-10">
-      
-      <div className="relative">
-        {/* Background image for text only */}
-       <div
-  className="absolute inset-0 w-full h-full bg-cover bg-center rounded-lg"
-  style={{ backgroundImage: `url(/images/image-3.png)` }}
-></div>
-<div className="absolute inset-0 bg-red-900/30 rounded-lg mix-blend-multiply"></div>
-<div className="absolute inset-0 bg-black/20 rounded-lg"></div>
+const IntroductionSection1 = () => {
+  const controls = useAnimation();
+  const { ref, inView } = useInView({
+    triggerOnce: false,
+    threshold: 0.3,
+  });
 
-        {/* Text content */}
-        <div className="relative p-8">
-          <h2 className="text-4xl text-white font-['Bebas_Neue',_sans-serif]">
-            WHAT HIDES IN THE DARKNESS?
-          </h2>
-          <div className="w-16 h-0.5 bg-red-600 mx-auto mt-4 mb-6"></div>
-          <p className="text-lg text-slate-200 leading-relaxed">
-          Reality conceals many impossibilities. These anomalies escape the laws of nature, unseen by the world. Within The Whispering Archives, their truths are kept. Our mission: to observe, to contain, and to guard.   </p>
+  useEffect(() => {
+    if (inView) controls.start({ opacity: 1, x: 0 });
+    else controls.start({ opacity: 0, x: -50 });
+  }, [inView, controls]);
+
+  return (
+    <section className="py-20 md:py-28 bg-black relative">
+      <div className="container mx-auto px-6 max-w-3xl relative z-10">
+        <div className="relative">
+          {/* Background image */}
+          <div
+            className="absolute inset-0 w-full h-full bg-cover bg-center rounded-lg"
+            style={{ backgroundImage: `url(/images/image-3.png)` }}
+          />
+          <div className="absolute inset-0 bg-red-900/30 rounded-lg mix-blend-multiply" />
+          <div className="absolute inset-0 bg-black/20 rounded-lg" />
+
+          {/* Animated Text Content */}
+          <motion.div
+            ref={ref}
+            animate={controls}
+            initial={{ opacity: 0, x: -50 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            className="relative p-8 text-left" // <-- here text-left instead of text-center
+          >
+            <h2 className="text-4xl text-white font-['Bebas_Neue',_sans-serif]">
+              WHAT HIDES IN THE DARKNESS?
+            </h2>
+            <div className="w-16 h-0.5 bg-red-600 mt-4 mb-6"></div>
+            <p className="text-lg text-slate-200 leading-relaxed">
+              Reality conceals many impossibilities. These anomalies escape the laws of nature, unseen by the world. Within The Whispering Archives, their truths are kept. Our mission: to observe, to contain, and to guard.
+            </p>
+          </motion.div>
         </div>
       </div>
+    </section>
+  );
+};
 
-    </div>
-  </section>
-);
 
 
 // This section WILL HAVE a new background image
