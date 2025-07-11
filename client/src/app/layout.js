@@ -1,16 +1,29 @@
+// client/src/app/layout.js
 import "./globals.css";
+import { AuthProvider } from "@/contexts/AuthContext";
+import { Toaster } from "react-hot-toast";
 
-// We don't need to import fonts here anymore since they are in globals.css
-
-export const metadata = {
-  title: "Whispering Archives // Secure Access",
-  description: "Unauthorized access is strictly prohibited.",
-};
+export const metadata = { /* ... */ };
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        <AuthProvider>
+          <Toaster 
+            position="bottom-right"
+            toastOptions={{
+                style: {
+                    background: '#1a1a1a',
+                    color: '#dc2626',
+                    border: '1px solid #dc2626',
+                    fontFamily: 'Share Tech Mono, monospace'
+                },
+            }}
+          />
+          {children}
+        </AuthProvider>
+      </body>
     </html>
   );
 }

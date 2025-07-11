@@ -30,3 +30,7 @@ exports.loginAgent = async (req, res) => {
         res.status(401).json({ message: '// AUTHENTICATION FAILURE: Invalid Credentials.' });
     }
 };
+exports.getMe = (req, res) => {
+    // req.agent is attached by the 'protect' middleware
+    res.status(200).json(req.agent);
+};

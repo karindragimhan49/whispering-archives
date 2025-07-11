@@ -14,11 +14,31 @@ exports.getAnomalyById = async (req, res) => {
     }
 };
 
+// ... (getAnomalies, getAnomalyById functions are the same) ...
+
 exports.createAnomaly = async (req, res) => {
+    // Destructure all possible fields from the request body
     const { itemNumber, objectClass, description, containmentProcedures } = req.body;
+
+    // Strict validation
     if (!itemNumber || !objectClass || !description || !containmentProcedures) {
         return res.status(400).json({ message: 'All log fields are mandatory.' });
     }
-    const anomaly = await Anomaly.create({ author: req.agent.id, ...req.body });
-    res.status(201).json(anomaly);
+
+    try {
+        const anomaly = await Anomaly.create({
+            itemNumber,
+            objectClass,
+            description,
+            containmentProcedures,
+            author: req.agent.id, // Make sure author is always set
+        });
+        res.status(201).json(anomaly);
+    } catch (error) {
+        // Handle potential duplicate itemNumber error
+        if (error.code === 11000) {
+            return res.status(400).json({ message: `Item #${itemNumber} already exists in the archive.` });
+        }
+        res.status(500).json({ message: 'Server error while creating anomaly.' });
+    }
 };

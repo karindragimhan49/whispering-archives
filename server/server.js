@@ -2,21 +2,24 @@ const express = require('express');
 const cors = require('cors');
 require('dotenv').config();
 const connectDB = require('./config/db');
+const authRoutes = require('./routes/authRoutes');
+const anomalyRoutes = require('./routes/anomalyRoutes');
 
-// Initialize App & Connect DB
+// --- 1. Connect to Database FIRST ---
 connectDB();
+
 const app = express();
 
-// Middleware
-app.use(cors());
-app.use(express.json());
+// --- 2. Define Middleware SECOND ---
+// These MUST come before the routes are defined.
+app.use(cors());        // Allows requests from other origins
+app.use(express.json());  // THIS IS THE FIX: Parses incoming JSON requests and puts the data on req.body
 
-// Main Test Route
+// --- 3. Define API Routes THIRD ---
 app.get('/', (req, res) => res.send('// WHISPERING ARCHIVES API -- STATUS: OPERATIONAL'));
+app.use('/api/auth', authRoutes);
+app.use('/api/anomalies', anomalyRoutes);
 
-// Define Routes
-app.use('/api/auth', require('./routes/authRoutes'));
-app.use('/api/anomalies', require('./routes/anomalyRoutes'));
-
+// --- 4. Start the Server LAST ---
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`[STATUS] Secure server initiated on port ${PORT}`));
