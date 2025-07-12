@@ -1,4 +1,4 @@
-# SCP-Style Horror Log: The Whispering Archives
+The Whispering Archives
 
 **Accessing Secure File... Decrypting... Welcome, Agent.**
 
@@ -14,15 +14,15 @@ Here is a glimpse into the secure interface of The Whispering Archives.
 
 **Main User Interface Banner:**
 *A dark, glitch-art inspired banner that sets the tone for the application.*
-![The Whispering Archives UI Banner]([UI_BANNER_IMAGE_LINK])
+![The Whispering Archives UI Banner](https://github.com/karindragimhan49/whispering-archives/blob/cdb3ada6025fc694446bef92ce9a21423c0aa368/snap/WelCome%20(2).png)
 
 **The Secure Archives (Dashboard):**
 *The central hub where all classified anomaly logs are displayed. The interface is designed to resemble a retro-futuristic secure terminal.*
-![The Whispering Archives Dashboard]([DASHBOARD_SCREENSHOT_LINK])
+![The Whispering Archives Dashboard](https://github.com/karindragimhan49/whispering-archives/blob/cdb3ada6025fc694446bef92ce9a21423c0aa368/snap/feed.png)
 
 **Long-form Banner/Collage:**
 *A collage showcasing various components of the UI, including the secure login and individual log entries.*
-![The Whispering Archives Feature Collage]([LONG_BANNER_LINK])
+![The Whispering Archives Feature Collage](https://github.com/karindragimhan49/whispering-archives/blob/cdb3ada6025fc694446bef92ce9a21423c0aa368/snap/ui.png)
 
 ---
 
