@@ -1,4 +1,4 @@
-#The Whispering Archives
+* The Whispering Archives
 
 **Accessing Secure File... Decrypting... Welcome, Agent.**
 
